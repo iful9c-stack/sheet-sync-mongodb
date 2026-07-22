@@ -5,7 +5,8 @@
   "main": "sync.js",
   "scripts": {
     "sync:list-mitra": "node sync.js",
-    "sync:master-data": "node sync_master_data.js"
+    "sync:master-data": "node sync_master_data.js",
+    "sync:config": "node sync_config.js"
   },
   "dependencies": {
     "googleapis": "^150.0.1",
