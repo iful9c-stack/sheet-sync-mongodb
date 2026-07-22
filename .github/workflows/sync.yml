@@ -1,0 +1,38 @@
+name: Sync Google Sheet to MongoDB
+
+on:
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 * * * *'
+
+
+jobs:
+
+  sync:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+
+      - name: Install Dependencies
+        run: npm install
+
+
+      - name: Run Sync Script
+        run: node sync.js
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+          GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
