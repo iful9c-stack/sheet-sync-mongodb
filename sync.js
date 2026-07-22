@@ -218,10 +218,13 @@ async function syncCollection(db, config) {
 
 async function main() {
 
-    const client =
-        new MongoClient(
-            process.env.MONGODB_URI
-        );
+    const client = new MongoClient(
+        process.env.MONGODB_URI,
+        {
+            tls: true,
+            retryWrites: true
+        }
+    );
 
     try {
 
@@ -269,6 +272,9 @@ async function main() {
         await client.close();
 
     }
+
+    console.log("URI Exists :", !!process.env.MONGODB_URI);
+console.log("URI Length :", process.env.MONGODB_URI.length);
 
 }
 
