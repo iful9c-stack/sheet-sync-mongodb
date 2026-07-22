@@ -1,0 +1,33 @@
+name: Sync Master Data
+
+on:
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+
+  sync:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Sync Script
+        run: node sync_master_data.js
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
