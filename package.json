@@ -1,0 +1,12 @@
+{
+  "name": "sheet-sync-mongodb",
+  "version": "1.0.0",
+  "main": "sync.js",
+  "scripts": {
+    "start": "node sync.js"
+  },
+  "dependencies": {
+    "googleapis": "^150.0.1",
+    "mongodb": "^6.18.0"
+  }
+}
